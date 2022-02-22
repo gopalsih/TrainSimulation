@@ -26,7 +26,7 @@ void grid::readTrackFile(void){
     uint32_t numTracks = vect[0];
     vect.clear();
 
-    for (int i=0; i< numTracks-1; i++) {
+    for (uint32_t i=0; i< numTracks-1; i++) {
         vect.clear();
         getline(MyReadFile, tp);
         vect = string2Int(tp);
@@ -190,16 +190,13 @@ void grid::drawGrid(int step){
     for (int i=0; i<GRID_SIZE; i++){
         for(int j=0; j<GRID_SIZE; j++){
             if (charGrid[i][j] == 'T'){
-                charGrid[i][j] == 'T';
+                memset(&charGrid[i][j],'T',sizeof(char));
             } else if((gridArray[i][j].trackObj.next.size()>0) && gridArray[i][j].signalObj.present==true){
-                printf("s");
-                charGrid[i][j] == 's';
+                memset(&charGrid[i][j],'s',sizeof(char));
             }else if((gridArray[i][j].trackObj.next.size()>0) && gridArray[i][j].signalObj.present==false){
-                printf("x");
-                charGrid[i][j] == 'x';
+                memset(&charGrid[i][j],'x',sizeof(char));
             }else {
-                printf(".");
-                charGrid[i][j] == '.';
+                memset(&charGrid[i][j],'.',sizeof(char));
             }
             printf("%c",charGrid[i][j]);
         }
