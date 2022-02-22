@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <thread>
+#include <windows.h>
 
 std::vector<int> grid::string2Int(std::string input) {
     std::istringstream iss (input);
@@ -69,11 +71,12 @@ void grid::readSinalFile(void) {
     std::vector<int> vect = string2Int(tp);
     int numSignals = vect[0];
     vect.clear();
-    for (int i=0; i<mNumTrains; i++){
+    for (int i=0; i<numSignals; i++){
         vect.clear();
         getline(MyReadFile, tp);
         vect = string2Int(tp);
         gridArray[vect[0]][vect[1]].signalObj.present = true;
+        printf("%d, %d\n",vect[0], vect[1]);
     }
 }
 
@@ -159,20 +162,68 @@ bool grid::checkCollision(void){
                             Position posWait = {trainArray[i].path[ret2].row,trainArray[i].path[ret2].col};
                             trainArray[i].path.insert(trainArray[i].path.begin()+ ret2,posWait);
                         }else{
-                            printf("No solution!!!");
+                            printf("No solution!!!\n");
                             return false;
                         }
                     }
                 }
             }
         }
-        if(retStatus){printf("No Collision!!");}
+        if(retStatus){printf("No Collision!!\n");}
         return retStatus;
+}
+
+void grid::drawGrid(int step){
+    char charGrid[GRID_SIZE][GRID_SIZE] = {0};
+    printf("%d\n",step);
+
+    for (int i=0;i<trainArray.size();i++){
+        Position currentPos;
+        if (step < trainArray[i].path.size()){
+            currentPos = trainArray[i].path[step];
+        } else {
+            currentPos = trainArray[i].path[trainArray[i].path.size()-1];
+        }
+        charGrid[currentPos.row][currentPos.col] = 'T';
     }
 
+    for (int i=0; i<GRID_SIZE; i++){
+        for(int j=0; j<GRID_SIZE; j++){
+            if (charGrid[i][j] == 'T'){
+                charGrid[i][j] == 'T';
+            } else if((gridArray[i][j].trackObj.next.size()>0) && gridArray[i][j].signalObj.present==true){
+                printf("s");
+                charGrid[i][j] == 's';
+            }else if((gridArray[i][j].trackObj.next.size()>0) && gridArray[i][j].signalObj.present==false){
+                printf("x");
+                charGrid[i][j] == 'x';
+            }else {
+                printf(".");
+                charGrid[i][j] == '.';
+            }
+            printf("%c",charGrid[i][j]);
+        }
+        printf("\n");
+    }
+}
 
 
+void grid::simulate(){
+    uint8_t numSteps = 10;
+    for (int step=0; step<numSteps; step++){
+        drawGrid(step);
+        Sleep(1000);
+    }
+}
 
+void grid::run(void){
+    readTrackFile();
+    readSinalFile();
+    readTrainFile();
+    computePaths();
+    while(checkCollision() == false);
+    simulate();
+}
 
 
 

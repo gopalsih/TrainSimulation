@@ -18,12 +18,16 @@ public:
     void readSinalFile(void);
     void computePaths(void);
     bool checkCollision(void);
-    grid(){};
+    void drawGrid(int step);
+    void simulate(void);
+    void run(void);
+    grid(){}
 private:
     std::vector<trainObject>trainArray;
     std::vector<int> string2Int(std::string input);
     void computePath(trainObject *train);
     int findNearestSignal(trainObject *train, int pos);
+
 };
 
 
