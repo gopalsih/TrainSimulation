@@ -32,12 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="grid.cpp" />
-		<Unit filename="grid.h" />
+		<Unit filename="GridManager.cpp" />
+		<Unit filename="GridManager.h" />
+		<Unit filename="InputManager.cpp" />
+		<Unit filename="InputManager.h" />
+		<Unit filename="RoutingManager.cpp" />
+		<Unit filename="RoutingManager.h" />
+		<Unit filename="Simulation.cpp" />
+		<Unit filename="Simulation.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="trafficObject.h" />
-		<Unit filename="trainManager.cpp" />
-		<Unit filename="trainManager.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -7,9 +7,13 @@ class RoutingManager : public GridManager {
 public:
     RoutingManager(void);
     void computePath(trainObject *train);                   // Function to compute paths for all trains
-    void updatePaths(void);                                 // Function to load paths on trainArray
-    int findNearestSignal(trainObject *train, int pos);     //
+    void printPaths(void);                                  // Debug function to print paths
     bool checkCollision(void);                              // Function to check for collisions based on train paths for all trains
+    void updatePaths(void);                                 // Function to load paths on trainArray
+    int findLongestPath(void);
+
+private:
+    int findNearestSignal(trainObject *train, int pos);     // Finds nearest signal before collision point
 };
 //
 
