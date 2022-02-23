@@ -1,9 +1,9 @@
 
-#include "trainManager.h"
+#include "RoutingManager.h"
 #include <queue>
-TrainManager::TrainManager(){}
+RoutingManager::RoutingManager(){}
 
-void TrainManager::computePath(trainObject *train) {
+void RoutingManager::computePath(trainObject *train) {
     struct queueData {
        Position currentPosition;
        std::vector<Position> path;
@@ -44,13 +44,13 @@ void TrainManager::computePath(trainObject *train) {
     }
 }
 
-void TrainManager::updatePaths() {
+void RoutingManager::updatePaths() {
     for (int i=0; i<trainArray.size(); i++){
         computePath(&trainArray[i]);
     }
 }
 
-int TrainManager::findNearestSignal(trainObject *train, int pos){
+int RoutingManager::findNearestSignal(trainObject *train, int pos){
     for (int i=0; i<pos; i++){
         if (gridArray[train->path[i].row][train->path[i].col].signalObj.present == true){
             return i;
@@ -59,8 +59,8 @@ int TrainManager::findNearestSignal(trainObject *train, int pos){
     return pos;
 }
 
-bool TrainManager::checkCollision(void){
-    int minPathSize = INT_MAX;
+bool RoutingManager::checkCollision(void){
+    int minPathSize = 0xFFFFFFFF;
     int minPathTrainIndex = 0;
     bool retStatus = true;
     Position collisionPos;

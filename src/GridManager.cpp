@@ -1,9 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include "grid.h"
+#include "GridManager.h"
 
-void grid::drawGrid(int step){
+void GridManager::drawGrid(int step){
     char charGrid[GRID_SIZE][GRID_SIZE] = {0};
     printf("%d\n",step);
 
@@ -34,20 +31,6 @@ void grid::drawGrid(int step){
     }
 }
 
-
-void grid::simulate(){
-    uint8_t numSteps = 10;
-    for (int step=0; step<numSteps; step++){
-        drawGrid(step);
-        Sleep(1000);
-    }
-}
-
-void grid::run(void){
-
-    //while(checkCollision() == false);
-    simulate();
-}
 
 
 

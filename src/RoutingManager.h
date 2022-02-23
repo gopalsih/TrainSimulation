@@ -1,11 +1,11 @@
-#ifndef TRAINMANAGER_H_INCLUDED
-#define TRAINMANAGER_H_INCLUDED
+#ifndef ROUTINGMANAGER_H_INCLUDED
+#define ROUTINGMANAGER_H_INCLUDED
 
-#include "grid.h"
+#include "GridManager.h"
 
-class TrainManager : public grid {
+class RoutingManager : public GridManager {
 public:
-    TrainManager(void);
+    RoutingManager(void);
     void computePath(trainObject *train);                   // Function to compute paths for all trains
     void updatePaths(void);                                 // Function to load paths on trainArray
     int findNearestSignal(trainObject *train, int pos);     //
@@ -13,4 +13,4 @@ public:
 };
 //
 
-#endif // TRAINMANAGER_H_INCLUDED
+#endif // ROUTINGMANAGER_H_INCLUDED

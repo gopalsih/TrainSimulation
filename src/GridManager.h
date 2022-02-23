@@ -1,12 +1,10 @@
-#ifndef GRID_H_INCLUDED
-#define GRID_H_INCLUDED
+#ifndef GRIDMANAGER_H_INCLUDED
+#define GRIDMANAGER_H_INCLUDED
 
 #include "trafficObject.h"
-#include <vector>
-#include <string>
-#include <queue>
-#include <thread>
-#include <windows.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <string.h>
 
 // --------------------------------------------------------------------------------------------------------------------
 // DEFINES
@@ -55,8 +53,6 @@ public:
     gridSquare gridArray[GRID_SIZE][GRID_SIZE]; // Grid of gridSquare structs
     uint32_t mGridSize;
     void drawGrid(int step);                    // Function to draw grid
-    void simulate(void);                        // Function to simulate the paths
-    void run(void);                             // Function to run all required functions and run the simulation
 protected:
     std::vector<trainObject>trainArray;
     int findNearestSignal(trainObject *train, int pos);
@@ -64,6 +60,4 @@ protected:
 };
 
 
-
-
-#endif // GRID_H_INCLUDED
+#endif // GRIDMANAGER_H_INCLUDED
