@@ -34,14 +34,10 @@
 		</Compiler>
 		<Unit filename="grid.cpp" />
 		<Unit filename="grid.h" />
-		<Unit filename="gridSquare.h" />
-		<Unit filename="intersectionObject.cpp" />
-		<Unit filename="intersectionObject.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="trackObject.cpp" />
-		<Unit filename="trackObject.h" />
-		<Unit filename="trainObject.cpp" />
-		<Unit filename="trainObject.h" />
+		<Unit filename="trafficObject.h" />
+		<Unit filename="trainManager.cpp" />
+		<Unit filename="trainManager.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
