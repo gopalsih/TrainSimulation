@@ -127,12 +127,12 @@ bool RoutingManager::checkCollision(void){
             // find the minimum path train.
             minPathSize = trainPathSize1;
             if (trainPathSize2 < trainPathSize1){
-                minPathSize = tempPathSize2;
+                minPathSize = trainPathSize2;
             }
             // iterate over all the paths
             for (int k = 0; k<minPathSize; k++){
-                Position *currentTrainPosition1 = trainArray[i].path[k]; // position ptr for train 1
-                Position *currentTrainPosition2 = trainArray[j].path[k]; // position ptr for train 2
+                Position *currentTrainPosition1 = &trainArray[i].path[k]; // position ptr for train 1
+                Position *currentTrainPosition2 = &trainArray[j].path[k]; // position ptr for train 2
                 // if there's a coordinate overlap then there's a collision, if the train is at the end already even if overlap it's not treated as a collision.
                 if ((currentTrainPosition1->col == currentTrainPosition2->col)&&(currentTrainPosition1->row == currentTrainPosition2->row) && (k!=minPathSize-1)){
                     retStatus = false;
@@ -142,11 +142,11 @@ bool RoutingManager::checkCollision(void){
                     int nearestSinalPath2 =  findNearestSignal(&trainArray[j],k);
                     // if either path finds a signal repeat the coordinate to delay the train
                     if (nearestSinalPath1!=k){
-                        Position posWait = {trainArray[i].path[ret].row,trainArray[i].path[ret].col};
-                        trainArray[i].path.insert(trainArray[i].path.begin()+ ret,posWait);
+                        Position posWait = {trainArray[i].path[nearestSinalPath1].row,trainArray[i].path[nearestSinalPath1].col};
+                        trainArray[i].path.insert(trainArray[i].path.begin()+ nearestSinalPath1,posWait);
                     }else if(nearestSinalPath2 != k){
-                        Position posWait = {trainArray[i].path[ret2].row,trainArray[i].path[ret2].col};
-                        trainArray[i].path.insert(trainArray[i].path.begin()+ ret2,posWait);
+                        Position posWait = {trainArray[i].path[nearestSinalPath2].row,trainArray[i].path[nearestSinalPath2].col};
+                        trainArray[i].path.insert(trainArray[i].path.begin()+ nearestSinalPath2,posWait);
                     }else{
                         // if no signal wad found then crash the program
                         printf("No solution!!!\n");

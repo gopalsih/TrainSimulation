@@ -13,7 +13,6 @@
 
 class InputManager : public RoutingManager {
 public:
-    int mNumTrains;                             // Number of trains in the grid
     void readTrackFile(void);                   // Function to read file containing train definition
     void readTrainFile(void);                   // Function to read file containing signal definition
     void readSinalFile(void);                   // Function to read file containing signal definition
